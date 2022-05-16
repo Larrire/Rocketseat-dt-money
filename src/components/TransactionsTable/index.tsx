@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { Container } from "./styles";
 import { createServer } from "miragejs";
+import { api } from "../../service/api";
 
 export function TransactionsTable() {
   useEffect(() => {
-    fetch('http://localhost:3000/api/transactions')
-      .then(response => response.json())
-      .then(data => console.log(data));
+    api.get('transactions')
+      .then(response => console.log(response.data));
   }, [])
 
   createServer({
@@ -21,7 +21,7 @@ export function TransactionsTable() {
             amount: 400,
             type: 'deposit',
             category: 'Food',
-            createdAt: new Date()
+            createdAt: new Date( )
           }
         ]
       })
